@@ -16,13 +16,14 @@ CurrencyOptionList: List[str] = [
 
 CalendarIconPath = "calendar.png"
 
-ChosenCurrency = CurrencyOptionList[0]
-
-RequestAddress = "http://api.nbp.pl/api/exchangerates/rates/c/"\
-                 + ChosenCurrency.lower() + \
-                 "/2020-09-01/2020-09-15/?format=json"
+ChosenCurrency = list(CurrencyOptionList[0])
 
 
-class RequestParameters:
-    def __init__(self, currency):
-        self.Currency = currency
+def update_chosen_currency(curr: str):
+    curr_list = list(curr)
+    for i in range(len(curr)):
+        ChosenCurrency[i] = curr_list[i]
+
+
+def get_url():
+    return "http://api.nbp.pl/api/exchangerates/rates/c/"+"".join(ChosenCurrency)+"/2020-09-01/2020-09-15/?format=json"

@@ -10,7 +10,9 @@ def get_response(request_address):
 
 def get_data_for_plot():
     exchange_rates = []
-    response = get_response(RequestAddress)
+    print(get_url())
+    print(''.join(ChosenCurrency))
+    response = get_response(get_url())
 
     if 200 == response.status_code:
         json_response = response.json()
