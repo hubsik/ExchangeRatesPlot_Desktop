@@ -10,18 +10,15 @@ CurrencyOptionList: List[str] = [
     "usd",
     "rub",
     "eur",
-    "byn",
-    "gel",
+    "chf",
     "gbp"
 ]
 
-CalendarIconPath = "calendar.png"
-
 ChosenCurrency = list(CurrencyOptionList[0])
 
-ChosenStartDate = list(date.today().strftime('%Y-%m-%d'))
+ChosenStartDate = list((date.today() - timedelta(days=30)).strftime('%Y-%m-%d'))
 
-ChosenEndDate = list((date.today() - timedelta(days=30)).strftime('%Y-%m-%d'))
+ChosenEndDate = list(date.today().strftime('%Y-%m-%d'))
 
 
 def update_chosen_currency(curr: str):
@@ -46,4 +43,4 @@ def update_end_date(new_date):
 
 
 def get_url():
-    return "http://api.nbp.pl/api/exchangerates/rates/c/"+"".join(ChosenCurrency)+"/"+"".join(ChosenEndDate)+"/"+"".join(ChosenStartDate)+"/?format=json"
+    return "http://api.nbp.pl/api/exchangerates/rates/c/"+"".join(ChosenCurrency)+"/"+"".join(ChosenStartDate)+"/"+"".join(ChosenEndDate)+"/?format=json"
